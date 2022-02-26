@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="news">
+        <div class="opacidad" *ngFor="let noticia of noticias">
+            <div class="Rectangle">
+                <a id="link" [href]="noticia.story_url" target="_blank">
+                    <div class="contenedor">
+                        <div class="creado">
+                           <img src="./../../../../assets/iconmonstr-time-2.svg" alt=""> <span>{{tiempo(noticia.created_at)}} {{noticia.author}}</span>
+                        </div>
+                        <div class="titulo">
+                            {{noticia.story_title}}
+                        </div>
+                    </div>
+                </a> 
+                <button class="fav" type="button"><img src="./../../../../assets/iconmonstr-favorite-3.svg" alt="" (click)="remove(noticia)"></button>
+            </div> 
+        </div>   
+    </div>
+</div>

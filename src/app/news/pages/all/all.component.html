@@ -1,0 +1,47 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn selecto " id="dropdownBasic1" ngbDropdownToggle>
+                <img src="./../../../../assets/image-138@2x.png" alt="" style="height: 24px; width: 24px; margin-bottom: 3px;" *ngIf="seleccionado === 'angular'">
+                <img src="./../../../../assets/image-140@2x.png" alt="" style="height: 24px; width: 24px; margin-bottom: 3px;" *ngIf="seleccionado === 'reactjs'">
+                <img src="./../../../../assets/image-141@2x.png" alt="" style="height: 24px; width: 24px; margin-bottom: 3px;" *ngIf="seleccionado === 'vuejs'">
+                {{seleccionado | titlecase}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="seleccion('angular')" class="seleccion"> <img src="./../../../../assets/image-138@2x.png" alt="" style="height: 24px; width: 24px;"> <span>Angular</span></button>
+                <button ngbDropdownItem (click)="seleccion('reactjs')" class="seleccion"> <img src="./../../../../assets/image-140@2x.png" alt="" style="height: 24px; width: 24px;"> <span>Reactjs</span></button>
+                <button ngbDropdownItem (click)="seleccion('vuejs')" class="seleccion"> <img src="./../../../../assets/image-141@2x.png" alt="" style="height: 24px; width: 24px;" > <span>Vuejs</span></button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="news">
+                <div class="opacidad" *ngFor="let noticia of noticias"  >
+                    <div class="Rectangle" *ngIf="cumple(noticia)" >
+                        <a id="link" [href]="noticia.story_url" target="_blank">
+                            <div class="contenedor">
+                                <div class="creado">
+                                   <img src="./../../../../assets/iconmonstr-time-2.svg" alt=""> <span>{{tiempo(noticia.created_at)}} {{noticia.author }}</span>
+                                </div>
+                                <div class="titulo">
+                                    {{noticia.story_title}}
+                                </div>
+                            </div>
+                        </a> 
+                        <button class="fav" type="button" *ngIf="esFavorito(noticia)" (click)="remove(noticia)"><img src="./../../../../assets/iconmonstr-favorite-3.svg" alt="" ></button>
+                        <button class="fav" type="button" *ngIf="!esFavorito(noticia)" (click)="addFavorito(noticia)"><img src="./../../../../assets/iconmonstr-favorite-2.svg" alt="" ></button>
+                    </div>
+                </div> 
+                
+            </div>
+        </div>
+    </div>
+
+    <ngb-pagination class="d-flex justify-content-center" [collectionSize]="500" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" (pageChange)="pagina($event)" *ngIf="noticias.length > 0"></ngb-pagination>
+    
+</div>
