@@ -27,7 +27,7 @@ export class AllComponent implements OnInit {
      * Aqui se reviza si existe un filtro seleccionado anteriormente para traer la noticias relacionadas
      */
     var comprobante = this.seleccionService.obtenerSeleccion()
-    if(comprobante != null || comprobante != ''){
+    if(comprobante != null && comprobante != ''){
       this.seleccionado = comprobante ;
       this.seleccion(this.seleccionado)
     }
