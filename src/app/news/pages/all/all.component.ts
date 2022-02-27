@@ -23,7 +23,9 @@ export class AllComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  
+    /**
+     * Aqui se reviza si existe un filtro seleccionado anteriormente para traer la noticias relacionadas
+     */
     var comprobante = this.seleccionService.obtenerSeleccion()
     if(comprobante != null || comprobante != ''){
       this.seleccionado = comprobante ;
@@ -32,6 +34,12 @@ export class AllComponent implements OnInit {
     
   }
 
+  /**
+   * se utiliza para traer las noticias relacionadas a este
+   * 
+   * @param seleccionado 
+   * Filtro seleccionado para traer noticias relacionadas
+   */
   seleccion(seleccionado : string){
 
     this.seleccionado = seleccionado;
@@ -42,6 +50,12 @@ export class AllComponent implements OnInit {
 
   }
 
+  /**
+   * Se utiliza para traer las noticias del tema filtrado y utilizando la paginacion
+   * 
+   * @param page 
+   * numero de la paginacion
+   */
   pagina(page : any){
 
     this.newsService.getNewss(page)
@@ -49,12 +63,26 @@ export class AllComponent implements OnInit {
 
   }
 
+  /**
+   * Se utiliza para agregar a lista de favoritos que se guarda en el local storage 
+   * 
+   * @param noticia 
+   * noticia seleccionada para agregar a favoritos
+   */
   addFavorito(noticia:any){
 
     this.favoritosService.addFav(noticia);
 
   }
 
+  /**
+   * Se utiliza para saber si esta noticia se encuentra en la lista de favoritos del local storage
+   * 
+   * @param noticia 
+   * noticia seleccionada
+   * 
+   * @returns {boolean}
+   */
   esFavorito(noticia:any){
 
     const favorito = this.favoritosService.isfav(noticia)
@@ -62,22 +90,45 @@ export class AllComponent implements OnInit {
 
   }
 
+   /**
+   * Esta funcion llama al service de Favoritos para eliminar la noticia seleccionada de la lista de favoritos
+   * 
+   * @param noticia 
+   * noticia a eliminar
+   */
   remove(noticia : any){
 
     const remove = this.favoritosService.removeFav(noticia);
 
    }
 
+   /**
+    * Se utiliza para saber si se cumplen los requerimientos basicos de la noticia para ser mostradas
+    * estos parametos son: author, story_title, story_url, created_at.
+    * 
+    * @param noticia 
+    * noticia seleccionada
+    * 
+    * @returns {boolean}
+    */
    cumple(noticia : any){
 
     if(noticia.author === null || noticia.story_title === null || noticia.story_url === null || noticia.create_at === null){
       return false;  
     }
-
     return true
 
    }
 
+  /**
+   * Esta funcion se utiliza para saber hace cuanto tiempo se encuentra publicada la noticia
+   * 
+   * @param fecha 
+   * Es la fecha de creacion de la noticia
+   * 
+   * @returns {string}
+   * Retorna un mensaje de hace cuanto tiempo se lanzo la noticia
+   */
    tiempo(fecha : any){
     var tiempo = '';
 

@@ -14,16 +14,32 @@ export class FavesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.favoritosService.getFav().subscribe( data => this.noticias = data )
+    this.favoritosService.getFav().subscribe( data => this.noticias = data ) //Llamma al servicio favoritos y trae la lista de favoritos almacenados en el local storage
     
   }
 
+  /**
+   * Esta funcion llama al service de Favoritos para eliminar la noticia seleccionada de la lista de favoritos
+   * 
+   * @param noticia 
+   * notivia a eliminar
+   */
   remove(noticia : any){
 
    this.noticias = this.favoritosService.removeFav(noticia);
 
   }
 
+
+  /**
+   * Esta funcion se utiliza para saber hace cuanto tiempo se encuentra publicada la noticia
+   * 
+   * @param fecha 
+   * Es la fecha de creacion de la noticia
+   * 
+   * @returns {string}
+   * Retorna un mensaje de hace cuanto tiempo se lanzo la noticia
+   */
   tiempo(fecha : any){
     var tiempo = '';
 

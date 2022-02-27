@@ -12,8 +12,4 @@ export class PrincipalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  btnClick(ruta : any){
-    
-  }
-
 }
